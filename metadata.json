@@ -1,0 +1,6 @@
+{
+  "name": "Estrategia Bot",
+  "description": "Tutor de estrategias de estudio para estudiantes de bachillerato con consejos personalizados, técnicas de subrayado y organización del tiempo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

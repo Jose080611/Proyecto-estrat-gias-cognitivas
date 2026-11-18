@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Underlining practice styles for the Interactive Subrayado Lab */
+.subrayado-recta {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: #1e3a8a;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.subrayado-ondulada {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #0284c7;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.subrayado-punteada {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: #475569;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.realce-amarillo {
+  background-color: rgba(254, 240, 138, 0.85);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+
+.realce-verde {
+  background-color: rgba(167, 243, 208, 0.78);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+
+.realce-rosa {
+  background-color: rgba(251, 207, 232, 0.82);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+
+/* Subtle notebook dot grid for the study stage */
+.study-grid-bg {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
