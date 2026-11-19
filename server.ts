@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express, {type Request, type Response} from 'express';
 import fs from 'fs';
+import http from 'http';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import {
@@ -279,10 +280,15 @@ async function startServer(): Promise<void> {
     }
   });
 
+  const httpServer = http.createServer(app);
+
   if (process.env.NODE_ENV !== 'production') {
     const {createServer} = await import('vite');
     const vite = await createServer({
-      server: {middlewareMode: true},
+      server: {
+        middlewareMode: true,
+        hmr: {server: httpServer},
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -299,7 +305,7 @@ async function startServer(): Promise<void> {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`Estrategia Bot server listening on http://0.0.0.0:${PORT}`);
   });
 }

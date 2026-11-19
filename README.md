@@ -1,41 +1,30 @@
 # Estrategia Bot
 
-Tutor interactivo de estrategias de estudio para estudiantes de bachillerato (consejos por materia, laboratorio práctico de subrayado lineal y de realce, y temporizador Pomodoro).
+Página web educativa y tutor interactivo de estrategias de estudio para estudiantes de bachillerato (guía visual de subrayado lineal y de realce, laboratorio práctico sobre tus propios apuntes, temporizador Pomodoro 25/5 y tutor paso a paso con Gemini).
 
-## Requisitos
+## Enlace web inmediato
+Si abres la aplicación desde la URL compartida de Google AI Studio o la publicas en un servidor Node.js, todas las secciones (incluido el chat en vivo con IA) funcionan directamente en el navegador.
 
-- Node.js 22.18 o superior (soporta ejecución directa de `server.ts`)
-- Una clave de API de Gemini (`GEMINI_API_KEY`) obtenida en [Google AI Studio](https://aistudio.google.com/)
+## Cómo publicarlo como página web desde GitHub
 
-## Cómo ejecutarlo desde GitHub
+### Opción A: Página web completa (con chat de IA en vivo)
+Como el chat con Gemini protege la `GEMINI_API_KEY` en `server.ts`, para que el tutor en vivo responda necesitas conectarlo a un servicio con Node.js (por ejemplo **Render**, **Railway** o **Google Cloud Run**):
+- **Build Command:** `npm install && npm run build`
+- **Start Command:** `npm start`
+- **Variables de entorno:** `NODE_ENV=production` y `GEMINI_API_KEY=tu_clave`
 
-### Opción 1: En el navegador con GitHub Codespaces
-1. Sube este proyecto a tu repositorio de GitHub (**Export to GitHub** desde Google AI Studio o `git push`).
-2. En tu repositorio en GitHub, haz clic en **Code** → **Codespaces** → **Create codespace on main**.
-3. En la terminal del Codespace, configura tu clave y ejecuta:
-   ```bash
-   cp .env.example .env
-   # Edita .env y coloca tu GEMINI_API_KEY real
-   npm install
-   npm run build
-   npm start
-   ```
-4. GitHub Codespaces abrirá automáticamente el puerto `3000` en tu navegador.
+### Opción B: GitHub Pages (sitio estático)
+Este proyecto incluye `.github/workflows/deploy-pages.yml` y `base: './'` en `vite.config.ts`:
+1. Sube el proyecto a GitHub en la rama `main`.
+2. En tu repositorio ve a **Settings → Pages → Build and deployment → Source** y elige **GitHub Actions**.
+3. GitHub compilará `dist/` y publicará tu página web (`https://TU_USUARIO.github.io/TU_REPO/`), donde funcionarán la guía visual, el laboratorio de subrayado y el temporizador Pomodoro (el chat en vivo requiere la Opción A).
 
-### Opción 2: En tu computadora clonando el repositorio
+## Ejecutarlo en tu computadora
+Requiere Node.js 22.18 o superior:
 ```bash
-git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-cd TU_REPOSITORIO
 cp .env.example .env
-# Abre .env y pega tu GEMINI_API_KEY
+# Edita .env y coloca tu GEMINI_API_KEY
 npm install
 npm run dev
 ```
-Luego abre `http://localhost:3000` en tu navegador.
-
-### Opción 3: Publicar en línea (Render, Railway o Cloud Run)
-> **Nota importante:** GitHub Pages solo sirve archivos estáticos (HTML/JS) y no ejecuta servidores Node.js (`server.ts`) ni protege tu `GEMINI_API_KEY`. Para tenerlo en línea desde tu repo de GitHub, conéctalo a **Render**, **Railway** o **Google Cloud Run**:
-
-- **Build command:** `npm install && npm run build`
-- **Start command:** `npm start`
-- **Variables de entorno:** `NODE_ENV=production` y `GEMINI_API_KEY=tu_clave`
+Abre `http://localhost:3000` en tu navegador.
